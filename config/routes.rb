@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pacts
   resources :actions
   resources :identities
   resources :habits
