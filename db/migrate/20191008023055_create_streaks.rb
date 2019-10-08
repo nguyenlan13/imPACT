@@ -5,6 +5,7 @@ class CreateStreaks < ActiveRecord::Migration[6.0]
       t.integer :longest_streak
       t.datetime :longest_streak_end_date
 
+
       t.timestamps
     end
   end
