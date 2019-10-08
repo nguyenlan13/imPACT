@@ -1,0 +1,2 @@
+class UserPact < ApplicationRecord
+end
