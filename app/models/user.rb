@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :user_pacts
   has_many :pacts, through: :user_pacts
 
-
+  has_many :comments, as: :commentable
 end
