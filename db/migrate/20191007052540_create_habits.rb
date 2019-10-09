@@ -4,7 +4,7 @@ class CreateHabits < ActiveRecord::Migration[6.0]
       t.integer :user_id
       t.integer :identity_id
       t.string :title
-      t.string :description
+      t.text :description
       t.string :frequency
       t.timestamps
     end
