@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      # redirect to the identity or habit path??
+      redirect to the identities_path
     else
       render :new
     end
