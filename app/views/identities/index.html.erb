@@ -1,5 +1,6 @@
-<li>
-    <% @identities.each do
-
-
-</li>
+<div>
+    <% @identities.each do |i| %>
+        <h2><%= link_to i.title, user_identities_path(i.users) %></h2>
+            <p><%= i.description %></p>
+    <% end %>
+</div>
