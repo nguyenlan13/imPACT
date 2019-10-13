@@ -9,5 +9,14 @@ class User < ApplicationRecord
   has_many :user_pacts
   has_many :pacts, through: :user_pacts
 
-  has_many :comments, as: :commentable
+#   has_many :comments, as: :commentable
+
+#   accepts_nested_attributes_for :identities
+
+#   def identities_attributes=(identity_attributes)
+#     identity_attributes.values.each do |identity_attribute|
+#         identity = Identity.find_or_create_by(identity_attribute)
+#         self.identities << identity
+#     end
+#   end
 end

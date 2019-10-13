@@ -8,16 +8,20 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect to the identities_path
+      redirect_to user_path(@user)
     else
       render :new
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :username, :password)
+    params.require(:user).permit(:name, :username, :password) #:identities_attributes => [:title, :description]
   end
 
 end
