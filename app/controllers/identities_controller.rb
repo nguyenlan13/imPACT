@@ -46,6 +46,6 @@ class IdentitiesController < ApplicationController
     end
 
     def identity_params
-        params.require(:identity).permit(:title, :description, :user_id)
+        params.require(:identity).permit(:title, :description)
       end
 end

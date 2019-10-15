@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserPactTest < ActiveSupport::TestCase
+class IdentityHabitTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

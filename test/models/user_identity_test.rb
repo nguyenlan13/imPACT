@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PactsControllerTest < ActionDispatch::IntegrationTest
+class UserIdentityTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

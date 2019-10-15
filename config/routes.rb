@@ -2,14 +2,17 @@ Rails.application.routes.draw do
     resources :reactions
     resources :comments
     resources :streaks
-    resources :pacts
-    resources :actions
+      resources :actions
     resources :identities
     resources :habits
     resources :users, except: [:new]
     
     resources :users, only: [:show] do  
         resources :identities, only: [:index, :new, :create]
+    end
+
+    resources :identities, only: [:show] do
+        resources :habits, only: [:index, :new, :create]
     end
 
     get "/signup" => "users#new", as: "signup"

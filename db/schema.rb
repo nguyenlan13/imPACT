@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_110050) do
+ActiveRecord::Schema.define(version: 2019_10_14_054357) do
 
   create_table "actions", force: :cascade do |t|
-    t.integer "habit_id"
+    t.integer "user_id"
     t.string "action_step"
     t.string "start_datetime"
     t.string "location"
@@ -33,8 +33,6 @@ ActiveRecord::Schema.define(version: 2019_10_09_110050) do
   end
 
   create_table "habits", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "identity_id"
     t.string "title"
     t.text "description"
     t.string "frequency"
@@ -43,14 +41,15 @@ ActiveRecord::Schema.define(version: 2019_10_09_110050) do
   end
 
   create_table "identities", force: :cascade do |t|
-    t.string "title"
+    t.string "pact_name"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "pacts", force: :cascade do |t|
-    t.string "name"
+  create_table "identity_habits", force: :cascade do |t|
+    t.integer "identity_id"
+    t.integer "habit_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -74,9 +73,9 @@ ActiveRecord::Schema.define(version: 2019_10_09_110050) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "user_pacts", force: :cascade do |t|
+  create_table "user_identities", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "pact_id"
+    t.integer "identity_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

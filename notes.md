@@ -1,32 +1,29 @@
-Models/Tables
+Database
+
 user
  -name
  -username
- -email?
+ <!-- -email? -->
  -password_digest
 
 Identity
  -title
  -description
 
-Category?
- -name
- -type
-
 Habit
  -title
  -description
- <!-- -frequency -->
- -stackable?
+ -frequency
+ <!-- -stackable? -->
 
 action
-  -datetime & location(implementation_intention--cue)
+  <!-- -datetime & location(implementation_intention--cue) -->
   -description
   -frequency
 <!-- temptation bundling -->
-<!-- Cue 
+<!-- Cue  -->
  -datetime
- -location -->
+ -location
 <!-- Status/progress -->
 
 streak
