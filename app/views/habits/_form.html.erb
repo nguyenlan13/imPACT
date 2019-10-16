@@ -1,0 +1,17 @@
+<h3>Habit:</h3>
+<%= form_with model: @habit, local: true do |form| %>
+    <div>
+        <%= form.label :title %>:
+        <%= form.text_field :title, placeholder: "Programming, Fitness, etc..." %>
+    </div>
+    <div>
+        <%= form.label :description %>:
+        <%= form.text_field :description, placeholder: "Code, Exercise, etc..." %>
+    </div>
+    <div>
+        <%= form.label :frequency %>:
+        <%= form.text_field :frequency, placeholder: "2x a Day, Daily, Weekly..." %>
+    </div>
+        <%= form.submit %>
+        
+<% end %>
