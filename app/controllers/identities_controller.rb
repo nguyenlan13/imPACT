@@ -1,5 +1,7 @@
 class IdentitiesController < ApplicationController
 
+    before_action :authenticate
+
     def index
         # if params[:user_id]
         #     @identities = User.find(params[:user_id]).identities

@@ -1,10 +1,18 @@
 class ActionsController < ApplicationController
+    
+    before_action :authenticate
+
     def index
-        @actions = Action.all
+        # @actions = Action.all
+        if params[:user_id]
+            @actions = User.find(params[:user_id]).actions
+        end
     end
 
     def new
-        @action = Action.new
+        @user = current_user
+        @action = @user.actions.build
+        # @action = Action.new
     end
 
     def create
@@ -26,9 +34,9 @@ class ActionsController < ApplicationController
         end 
     end
 
-    # def edit
+    def edit
 
-    # end
+    end
 
     def show
         @action = Action.find(params[:id])
@@ -37,5 +45,4 @@ class ActionsController < ApplicationController
     def action_params
         params.require(:action).permit(:user_id, :habit_id, :action_step, :start_datetime, :location, :duration)
       end
-
 end
