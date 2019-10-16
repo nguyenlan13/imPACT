@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            flash[:success] = "Welcome, #{@user.username}"
+            flash[:success] = "Welcome, #{@user.name}"
             redirect_to user_path(@user)
         else
             flash[:danger] = "Login credentials were not found, please try again."
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        session.delete
+        session.delete(:user_id)
         redirect_to login_path
     end
 end
