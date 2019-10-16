@@ -6,6 +6,7 @@ has_many :actions
 
 #Action
 belongs_to :user
+belongs_to :habit
 
 #Habit
 has_many :actions
