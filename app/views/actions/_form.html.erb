@@ -1,0 +1,18 @@
+<h3>Action:</h3>
+
+
+<%= form_with model: @action, local: true do |form| %>
+    <div>
+       I will: <%= form.text_field :action_step, placeholder: "Action Step" %>
+    </div>
+    <div>
+        <%= form.text_field :start_datetime, placeholder: "Before/After Work, Schoool, etc.." %>
+    </div>
+    <div>
+        At: <%= form.text_field :location, placeholder: "Location" %>
+    </div>
+    <div>
+        for: <%= form.text_field :duration, placeholder: "Duration" %>
+    </div>
+        <%= form.submit %>
+<% end %>
