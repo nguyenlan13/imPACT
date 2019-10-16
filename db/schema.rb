@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_054357) do
+ActiveRecord::Schema.define(version: 2019_10_15_133358) do
 
   create_table "actions", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "habit_id"
     t.string "action_step"
     t.string "start_datetime"
     t.string "location"
