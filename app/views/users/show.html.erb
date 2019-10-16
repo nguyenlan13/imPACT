@@ -1,4 +1,5 @@
 <% @user.identities.each do |identity| %>
-    <%= identity.title %>
-    <%= identity.description %>
+    <p>
+        My PACTS: <%= identity.pact_name %>: <%= identity.description %>
+    </p>
 <% end %>
