@@ -11,8 +11,11 @@
 
   <body>
     <header>
-    
-        <%= navbar %>
+    <%= navbar %>
+        <% flash.each do |k, v| %>
+            <div><%= v %></div>
+        <% end %>
+
     </header>
     <%= yield %>
   </body>
