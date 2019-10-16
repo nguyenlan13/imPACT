@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 2019_10_15_133358) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "google_token"
+    t.string "google_refresh_token"
     t.string "name"
     t.string "username"
     t.string "password_digest"
