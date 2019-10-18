@@ -1,11 +1,11 @@
 class Identity < ApplicationRecord
-    has_many :user_identities
+    has_many :user_identities, dependent: :destroy
     has_many :users, through: :user_identities
-    has_many :identity_habits
+    has_many :identity_habits, dependent: :destroy
     has_many :habits, through: :identity_habits
     has_many :comments, as: :commentable
 
-
+#scope method
 #   accepts_nested_attributes_for :habits
 
 #   def habits_attributes=(habit_attributes)

@@ -7,6 +7,9 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :commentable, polymorphic: true
 
-  has_many :comments, as: :commentable
-  has_many :reactions, as: :reactable
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :reactions, as: :reactable, dependent: :destroy
+
+
+  #scope method
 end

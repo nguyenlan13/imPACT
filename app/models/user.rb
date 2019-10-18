@@ -1,10 +1,14 @@
 class User < ApplicationRecord
     has_secure_password
+    validates :name, presence: true
+    validates :username, presence: true
     validates :username, uniqueness: true
-    has_many :user_identities
+    validates :password, length: {in: 8..20}
+
+    has_many :user_identities, dependent: :destroy
     has_many :identities, through: :user_identities
     has_many :habits, through: :identities
-    has_many :actions
+    has_many :actions, dependent: :destroy
 
 
   def self.from_omniauth(auth)
