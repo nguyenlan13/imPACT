@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_10_15_133358) do
     t.string "google_token"
     t.string "google_refresh_token"
     t.string "name"
+    t.string "email"
     t.string "username"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false

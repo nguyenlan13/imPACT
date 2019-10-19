@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #user
-lan = User.create(name: "Lan", username: "lnguyen", password: "password")
-new_dev = User.create(name: "New_Dev", username: "Newbie", password: "password")
+lan = User.create(email: "lan@impact.com", name: "Lan", username: "lnguyen", password: "password")
+new_dev = User.create(email: "new_dev@impact.com", name: "New_Dev", username: "Newbie", password: "password")
 
 #identity
 great_programmer = Identity.create(pact_name: "Coding Warriors", description: "Great Programmer")
