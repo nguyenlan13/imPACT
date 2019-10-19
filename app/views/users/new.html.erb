@@ -1,8 +1,13 @@
 
 <%= form_with model: @user, local: true do |f| %>
+
 <div>
     <%= f.label :name %>
     <%= f.text_field :name %>
+</div>
+<div>
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
 </div>
 <div>
     <%= f.label :username %>

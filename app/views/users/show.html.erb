@@ -1,5 +1,9 @@
 <% @user.identities.each do |identity| %>
     <p>
-        My PACTS: <%= identity.pact_name %>: <%= identity.description %>
+        My PACTS: 
+        <div>
+            <%= link_to identity.pact_name, identity_path(@user) %> - Identity: <%= link_to identity.description %>
+        </div>
+        <%= button_to "Add Identity", new_identity_path %>
     </p>
 <% end %>
