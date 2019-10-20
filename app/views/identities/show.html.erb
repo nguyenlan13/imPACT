@@ -1,0 +1,16 @@
+<%= @identity.description %>
+<% @identity.users.each do |user| %>
+    <p>
+        PACT: 
+        <div>
+            <%= link_to user.name%> 
+        </div>
+    </p>
+<% end %>
+
+<%= form_tag '/join' do %>
+    <%= hidden_field_tag 'identity_id', @identity.id %>
+    <%= submit_tag "Join Pact!" %>
+<% end %>
+
+<%= link_to "Back to List", identities_path %>

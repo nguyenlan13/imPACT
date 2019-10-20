@@ -1,6 +1,9 @@
+<h3>Identities</h3>
+<%= link_to "Add Identity", new_identity_path %>
 <div>
-    <% @identities.each do |i| %>
-        <h2><%= link_to i.pact_name, user_identities_path(i.users) %></h2>
-            <p><%= i.description %></p>
+    <% @identities.each do |identity| %>
+        <%= render "identity", identity: identity %>
+
     <% end %>
 </div>
+
