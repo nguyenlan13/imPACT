@@ -4,16 +4,28 @@ class ApplicationController < ActionController::Base
 
     private
 
-    def logged_in?
-        !!current_user
+    #add rescue 404
+    #add rescue 403
+
+    def owner?(resource)
+        resource.user == current_user
+    end
+
+    # def authorize(resource)
+    #     if !owner?(resource)
+    # end
+
+
+    def log_in(user)
+        session[:user_id] = user.id
     end
 
     def current_user
         User.find_by(id: session[:user_id])
     end
 
-    def log_in(user)
-        session[:user_id] = user.id
+    def logged_in?
+        !!current_user
     end
 
     def authenticate
