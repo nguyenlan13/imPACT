@@ -1,9 +1,10 @@
 class User < ApplicationRecord
-    has_secure_password
+ 
+    validates :username, presence: true, uniqueness: true
     validates :name, presence: true
     validates :email, presence: true, uniqueness: true
-    validates :username, presence: true, uniqueness: true
-    validates :password, length: {in: 8..21}
+    validates :password, length: { within: 8..21 }, on: :create
+    has_secure_password
 
     has_many :user_identities, dependent: :destroy
     has_many :identities, through: :user_identities
@@ -19,14 +20,16 @@ class User < ApplicationRecord
         # Creates a new user only if it doesn't exist
         where(email: auth.info.email).first_or_initialize do |user|
 
+            user.email = auth.info.email
             user.username = auth.info.name + rand(1..1000).to_s
             user.name = auth.info.name
-            user.email = auth.info.email
-            password = self.g_random_code(20)
+            password = self.g_random_code(19)
             user.password = password
 
         end
     end
+
+    
     #   has_many :comments, as: :commentable
 
     #   accepts_nested_attributes_for :identities
