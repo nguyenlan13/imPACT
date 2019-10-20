@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
     def index
         @users = User.all
-        # @identity = Identity.find(params[:id])
     end
 
     def new
@@ -11,7 +10,6 @@ class UsersController < ApplicationController
     end
 
     def create
-
         @user = User.new(user_params)
         if @user.save
         #logs in the user
@@ -19,9 +17,7 @@ class UsersController < ApplicationController
             log_in(@user)
             flash[:success] = "Welcome #{@user.name}!"
             redirect_to dashboard_path
-            byebug
         else
-            byebug
             render :new
         end
     end
@@ -38,7 +34,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:name, :username, :password) #:identities_attributes => [:title, :description]
+        params.require(:user).permit(:email, :name, :username, :password)
     end
 
 end
