@@ -1,6 +1,7 @@
 class ActionsController < ApplicationController
     
     before_action :authenticate
+    before_action :get_action, only [:edit, :update]
 
     def index
         # @actions = Action.all
@@ -19,7 +20,7 @@ class ActionsController < ApplicationController
         if params[:user_id]
             @user = User.find(id: params[:user_id])
             @action = @user.actions.build(action_params)
-            if @action.save!
+            if @action.save
                 redirect_to user_path(@user)
             else 
                redirect_to new_action_path
@@ -29,7 +30,8 @@ class ActionsController < ApplicationController
             if @action.save 
                 redirect_to action_path(@action) 
             else
-                redirect_to new_action_path
+                render :new
+                # redirect_to new_action_path
             end
         end 
     end
@@ -38,9 +40,19 @@ class ActionsController < ApplicationController
 
     end
 
-    def show
-        @action = Action.find(params[:id])
+    def update
+        @action.update(action_params)
+        redirect_to action_path(@action) 
     end
+
+    # def show
+    #     @action = Action.find(params[:id])
+    # end
+
+    private
+
+    def get_actions
+        @action = Action.find(params[:id])
 
     def action_params
         params.require(:action).permit(:user_id, :habit_id, :action_step, :start_datetime, :location, :duration)
