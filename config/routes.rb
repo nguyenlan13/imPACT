@@ -7,24 +7,26 @@ Rails.application.routes.draw do
     resources :habits
     resources :users, except: [:new]
     
-    resources :users, only: [:show] do  
+    resources :users do  
         resources :identities, only: [:index, :new, :create]
     end
 
-    resources :identities, only: [:show] do
+    resources :identities do
+        resources :users, only: [:index]
         resources :habits, only: [:index, :new, :create]
     end
 
-    resources :habits, only: [:show] do
-        resources :actions, only: [:index, :new, :create]
+    resources :habits do
+        resources :actions, only: [:index, :new, :edit, :create]
     end
 
     get "/signup" => "users#new", as: "signup"
     get "/login" => "sessions#new", as: "login"
     post "/login" => "sessions#create"
     delete "/logout" => "sessions#destroy"
-    get 'dashboard' => "users#dashboard", as: "dashboard"
-    
+    get "dashboard" => "users#dashboard", as: "dashboard"
+    post "/join" => "user_identities#create", as: "join"
+    root 'sessions#new'
     # Routes for Google authentication
     get 'auth/:provider/callback', to: 'sessions#googleAuth'
     get 'auth/failure', to: redirect('/')
