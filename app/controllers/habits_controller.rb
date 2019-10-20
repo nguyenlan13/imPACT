@@ -1,6 +1,7 @@
 class HabitsController < ApplicationController
 
     before_action :authenticate
+        # before_action :authorize[]
 
     def index
         @habits = Habit.all
@@ -19,9 +20,10 @@ class HabitsController < ApplicationController
         if params[:user_id]
             @user = User.find(id: params[:user_id])
             @habit = @user.habits.build(habit_params)
-            if @habit.save!
+            if @habit.save
                 redirect_to user_path(@user)
-            else 
+            else
+                #flash[:danger] = 
                redirect_to new_habit_path
             end
         else
@@ -32,6 +34,14 @@ class HabitsController < ApplicationController
                 redirect_to new_habit_path
             end
         end
+    end
+
+    def edit
+
+    end
+
+    def update
+
     end
 
     def habit_params
