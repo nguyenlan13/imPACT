@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
             flash[:success] = "Welcome, #{@user.name}"
             redirect_to dashboard_path
         else
-            # byebug
             flash[:danger] = "Login credentials were incorrect, please try again."
             redirect_to login_path
         end
@@ -35,15 +34,16 @@ class SessionsController < ApplicationController
         # Note: Refresh_token is only sent once during the first request
         refresh_token = access_token.credentials.refresh_token
         @user.google_refresh_token = refresh_token if refresh_token.present?
+       
         if @user.save
         #logs in the user
         # session[:user_id] = @user.id
             log_in(@user)
             flash[:success] = "Welcome #{@user.name}!"
             redirect_to dashboard_path
-        #    byebug
+          
         else
-            # byebug
+            byebug
             flash[:danger] = "Login credentials were incorrect, please try again."
             redirect_to login_path
         end
