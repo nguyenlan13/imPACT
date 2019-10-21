@@ -2,10 +2,11 @@
 
 <%= form_with model: @identity, local: true do |form| %>
     <p>
+
         PACT Name:<%= form.text_field :pact_name %>
     </p>
     <p>
-        I am a <%= form.text_field :description, placeholder: "Reader, Healthy Person..." %>
+        I am a/an <%= form.text_field :description, placeholder: "Reader, Healthy Person..." %>
     </p>
         <%= form.submit %>
 <% end %>

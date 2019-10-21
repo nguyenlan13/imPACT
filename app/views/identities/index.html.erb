@@ -2,8 +2,9 @@
 <%= link_to "Add Identity", new_identity_path %>
 <div>
     <% @identities.each do |identity| %>
-        <%= render "identity", identity: identity %>
-
+       <p> <%= render 'identities', identity: identity %> </p>
     <% end %>
 </div>
 
+<%= link_to "Return to Profile", user_path(current_user)%>
+<%= link_to "Return to Dashboard", dashboard_path(current_user)%>
