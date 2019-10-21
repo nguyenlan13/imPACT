@@ -55,6 +55,6 @@ class ActionsController < ApplicationController
         @action = Action.find(params[:id])
 
     def action_params
-        params.require(:action).permit(:user_id, :habit_id, :action_step, :start_datetime, :location, :duration)
-      end
+        params.require(:action).permit(:user_id, :habit_id, :action_step, :start_datetime, :location, :action_time, :day, :duration_number, :duration_type)
+    end
 end
