@@ -29,6 +29,8 @@ class UsersController < ApplicationController
 
     def dashboard
         @user = current_user
+
+        # @identity = Identity.find(params[:identity_id])
     end
 
     private
