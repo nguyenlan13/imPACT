@@ -18,7 +18,10 @@ ActiveRecord::Schema.define(version: 2019_10_15_133358) do
     t.string "action_step"
     t.string "start_datetime"
     t.string "location"
-    t.string "duration"
+    t.time "action_time"
+    t.string "day"
+    t.integer "duration_number"
+    t.string "duration_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -34,8 +37,9 @@ ActiveRecord::Schema.define(version: 2019_10_15_133358) do
   end
 
   create_table "habits", force: :cascade do |t|
+    t.boolean "build", default: true
     t.string "title"
-    t.text "description"
+    t.integer "frequency_number"
     t.string "frequency"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -67,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_10_15_133358) do
 
   create_table "streaks", force: :cascade do |t|
     t.integer "habit_id"
+    t.integer "user_id"
     t.integer "current_streak"
     t.integer "longest_streak"
     t.datetime "longest_streak_end_date"
