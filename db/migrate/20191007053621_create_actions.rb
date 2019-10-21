@@ -6,7 +6,10 @@ class CreateActions < ActiveRecord::Migration[6.0]
         t.string :action_step
         t.string :start_datetime
         t.string :location
-        t.string :duration
+        t.time :action_time
+        t.string :day
+        t.integer :duration_number
+        t.string :duration_type
         t.timestamps
     end
   end
