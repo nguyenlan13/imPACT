@@ -1,0 +1,15 @@
+
+<h3>Habit:</h3>
+<%= @habit.title %>
+        <h3>Followers: </h3>
+<% @habit.users.each do |user| %>
+    <p>
+        <div>
+            <%= link_to user.name%> 
+        </div>
+    </p>
+<% end %>
+
+
+
+<%= link_to "Back to List", habits_path %>

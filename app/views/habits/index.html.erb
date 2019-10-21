@@ -1,0 +1,8 @@
+<h2>Habits</h2>
+<%= link_to "Add Habit", new_habit_path %>
+<div>
+    <% @habits.each do |habit| %>
+        <%= render "habit", habit: habit %>
+        
+    <% end %>
+</div>

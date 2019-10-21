@@ -44,7 +44,11 @@ class HabitsController < ApplicationController
 
     end
 
+    def show
+        @habit = Habit.find(params[:id])
+    end
+
     def habit_params
-        params.require(:habit).permit(:title, :description, :frequency)
+        params.require(:habit).permit(:build, :title, :frequency_number, :frequency)
     end
 end

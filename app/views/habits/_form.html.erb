@@ -1,17 +1,22 @@
 <h3>Habit:</h3>
 <%= form_with model: @habit, local: true do |form| %>
-    <div>
+      <div>
+      <h5>Build or Quit a Habit ?</h5>
+        <%= form.label :build %>
+        <%= form.radio_button :build, true %>
+        <%= form.label :quit %>
+        <%= form.radio_button :build, false %>
+    </div>    
+    <p>
         <%= form.label :title %>:
-        <%= form.text_field :title, placeholder: "Programming, Fitness, etc..." %>
-    </div>
-    <div>
-        <%= form.label :description %>:
-        <%= form.text_field :description, placeholder: "Code, Exercise, etc..." %>
-    </div>
-    <div>
+        <%= form.text_field :title, placeholder: "Code, Exercise, etc..." %>
+    </p>
+    <p>
         <%= form.label :frequency %>:
-        <%= form.text_field :frequency, placeholder: "2x a Day, Daily, Weekly..." %>
-    </div>
+        <%= form.number_field( :frequency_number, in: 1..10) %> times per 
+        <%= form.text_field :frequency, placeholder: "Day, Week, Month" %>
+    </p>
+    <p>
         <%= form.submit %>
-        
+    </p>
 <% end %>
