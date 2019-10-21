@@ -3,3 +3,10 @@
 <h3>New Identities:</h3>
 <h3></h3>
 
+<div>
+<%= form_with model: @identity, url: join_path do |form| %>
+    <%= form.collection_select :identity_id, Identity.all, :id, :pact_name, {:prompt => 'Select Identity'} %>
+<%= form.submit "Join Pact" %>
+<% end %>
+</div>
+
