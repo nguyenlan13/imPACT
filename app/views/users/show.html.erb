@@ -1,12 +1,26 @@
+<% if @user == current_user %>
 <h3>My PACTS: </h3>
+<% else %>
+<h2><%= @user.username %>'s Profile</h2>
+<h3>Current PACTS:</h3>
+<% end %>
 <% @user.identities.each do |identity| %>
     <%= render 'identity', identity: identity %>
 <% end %>
+<% if @user == current_user %>
   <%= link_to "Add Identity", new_identity_path%>
+  <% end %>
 
+
+<% if @user == current_user %>
 <h3>My Habits: </h3>
+<% else %>
+<h3>Current Habits:</h3>
+<% end %>
 
 <% @user.habits.each do |habit| %>
     <%= render 'habit', habit: habit %>
 <% end %>
+<% if @user == current_user %>
   <%= link_to "Add Habit", new_habit_path%>
+<% end %>

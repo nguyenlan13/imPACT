@@ -24,14 +24,13 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-  
     end
 
     def dashboard
         @user = current_user
-
         # @identity = Identity.find(params[:identity_id])
     end
+
 
     private
 
