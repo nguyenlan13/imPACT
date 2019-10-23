@@ -37,8 +37,9 @@ Rails.application.routes.draw do
     get "/login" => "sessions#new", as: "login"
     post "/login" => "sessions#create"
     delete "/logout" => "sessions#destroy"
-    get "dashboard" => "users#dashboard", as: "dashboard"
+    get "/dashboard" => "users#dashboard", as: "dashboard"
     post "/join" => "user_identities#create", as: "join"
+    post "/link" => "identity_habits#create", as: "link"
     root 'sessions#new'
 
     # Routes for Google authentication

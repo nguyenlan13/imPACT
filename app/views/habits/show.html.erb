@@ -5,13 +5,18 @@
 <% @habit.users.each do |user| %>
     <p>
         <div>
-            <%= link_to user.name%> 
+            <%= link_to user.name, user_path(user)%> 
         </div>
     </p>
 <% end %>
 
 
-
-
+<div>
+<%= form_with model: IdentityHabit.new, url: link_path, local: true do |form| %>
+    <%= form.collection_select :identity_id, Identity.all, :id, :pact_name, {:prompt => 'Select Identity'} %>
+    <%= hidden_field_tag 'habit_id', @habit.id %>
+<%= form.submit "Link Identity" %>
+<% end %>
+</div>
 
 <%= link_to "Back to List", habits_path %>

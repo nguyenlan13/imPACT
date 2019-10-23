@@ -5,7 +5,7 @@
 <% @identity.users.each do |user| %>
     <p>
         <div>
-            <%= link_to user.name%> 
+            <%= link_to user.name, user_path(user) %> 
         </div>
     </p>
 <% end %>

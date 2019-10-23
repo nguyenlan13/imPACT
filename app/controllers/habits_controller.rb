@@ -18,7 +18,7 @@ class HabitsController < ApplicationController
     end
 
     def create
-        byebug
+  
         if params[:user_id]
             @user = User.find(id: params[:user_id])
             @habit = @user.habits.build(habit_params)
@@ -63,6 +63,6 @@ class HabitsController < ApplicationController
     end
 
     def habit_params
-        params.require(:habit).permit(:build, :title, :frequency_number, :frequency, :identity_attributes=[], identity_ids:[])
+        params.require(:habit).permit(:build, :title, :frequency_number, :frequency)
     end
 end

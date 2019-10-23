@@ -2,7 +2,11 @@
 <%= link_to "Add Habit", new_habit_path %>
 <div>
     <% @habits.each do |habit| %>
+
+    <% habit.identites.each do |identity| %>
+
         <%= render "habit", habit: habit %>
         
+        <% end %>
     <% end %>
 </div>

@@ -1,5 +1,5 @@
 <h3>Habit:</h3>
-<%= form_with model: @habit, url: link_path do |form| %>
+<%= form_with model: @habit, local: true do |form| %>
       <div>
       <h5>Build or Quit a Habit ?</h5>
         <%= form.label :build %>
@@ -16,7 +16,6 @@
         <%= form.number_field( :frequency_number, in: 1..10) %> times per 
         <%= form.select :frequency, ['Day', 'Week', 'Month']%>
     </p>
-    <%= form.collection_select :identity_id, Identity.all, :id, :pact_name, {:prompt => 'Select Identity'} %>
     <p>
         <%= form.submit %>
     </p>

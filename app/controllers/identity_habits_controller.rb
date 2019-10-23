@@ -1,15 +1,15 @@
 class IdentityHabitsController < ApplicationController
 
     def create
-        
-        identity_habit = IdentityHabit.new(identity: params[:identity_id], habit: params[:habit_id])
+        # byebug
+        identity_habit = IdentityHabit.new(identity: Identity.find(params[:identity_habit][:identity_id]), habit: Habit.find(params[:habit_id]))
 
         if identity_habit.save
 
-            redirect_to identity_habits_path(@identity.id)
+            redirect_to identity_habits_path(identity_habit)
         else
             flash[:danger] = "Habit was not linked to identity, please try again"
-            redirect_to habit_path(params[@habit.id])
+            redirect_to habit_path(params[:habit_id])
         end
     end
 
