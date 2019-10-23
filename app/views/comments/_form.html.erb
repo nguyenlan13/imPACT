@@ -1,0 +1,9 @@
+<h4>Add a comment:</h4>
+<%= form_with model: [@commentable, Comment.new], local: true do |f| %>
+<%= f.text_area :content, placeholder: "Add your comments here..." %>
+<%= f.hidden_field :commentable_id, :value => @commentable.id %>
+        <%= f.submit "Comment" %>
+   <% end %>
+
+
+

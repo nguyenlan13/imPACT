@@ -21,6 +21,7 @@ class IdentitiesController < ApplicationController
     end
 
     def create
+        current_user
         # @identity = Identity.new(identity_params)
         # @identity.save
         # redirect_to identity_path(@identity)
@@ -35,7 +36,7 @@ class IdentitiesController < ApplicationController
         else
             @identity = Identity.new(identity_params)
             if @identity.save 
-                redirect_to identity_path(@identity) 
+                redirect_to user_identities_path([:user_id]) 
             else
                 redirect_to new_identity_path
             end
@@ -48,6 +49,7 @@ class IdentitiesController < ApplicationController
 
     def show
         @identity = Identity.find(params[:id])
+        @commentable = @identity
     end
 
     def identity_params

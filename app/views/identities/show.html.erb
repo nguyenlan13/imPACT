@@ -15,4 +15,12 @@
     <%= submit_tag "Join Pact" %>
 <% end %>
 
+<% @identity.comments.each do |comment| %>
+<p><%= comment.content %> - <%= comment.user.username %></p>
+<% end %>
+
+<p><%= render partial: "comments/form", locals: {commentable: @identity}%></p>
+
+
+
 <%= link_to "Back to List", identities_path %>
