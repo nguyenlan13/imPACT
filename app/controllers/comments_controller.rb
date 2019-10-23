@@ -60,7 +60,7 @@ class CommentsController < ApplicationController
 
     def destroy
         @comment = Comment.find(params[:id]).delete
-        redirect_to polymorphic_path([@commentable, @comment])
+        redirect_to polymorphic_path([@commentable, @comments])
     end
 
      def show
