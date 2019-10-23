@@ -19,12 +19,10 @@ class CommentsController < ApplicationController
     end
 
     def new
-        @comment = comments.new
+        @comment = Comment.new
     end
 
     def create
-    
-
         if params[:comment_id]
             @commentable = Comment.find(params[:comment_id])
         elsif params[:habit_id]
@@ -33,13 +31,12 @@ class CommentsController < ApplicationController
             @commentable = Identity.find(params[:identity_id])
         else params[:streak_id]
             @commentable = Streak.find(params[:streak_id])
-            # byebug
         end
         @comment = @commentable.comments.new(comment_params)
         @comment.user = current_user
        
         if @comment.save 
-              redirect_to polymorphic_path([@commentable, @comments])
+            redirect_to polymorphic_path([@commentable, @comments])
         else
             flash[:danger] = "Comment was not saved."
             redirect_to new_comment_path
@@ -48,15 +45,13 @@ class CommentsController < ApplicationController
 
     def edit
         @comment = Comment.find(params[:id])
- 
     end
 
     def update
-        current_user
         @comment = Comment.find(params[:id])
         @comment.update(comment_params)
         if @comment.save
-            redirect_to polymorphic_path(@commentable_type, @comment)
+            redirect_to polymorphic_path([@commentable, @comments])
         else
             flash[:danger] = "Comment was not updated."
             redirect_to edit_comment_path
@@ -65,14 +60,13 @@ class CommentsController < ApplicationController
 
     def destroy
         @comment = Comment.find(params[:id]).delete
-        redirect_to polymorphic_path(@commentable_type, @comment)
+        redirect_to polymorphic_path([@commentable, @comment])
     end
 
      def show
         @comment = Comment.find(params[:id])
-
-        
      end
+
      private
 
      def comment_params

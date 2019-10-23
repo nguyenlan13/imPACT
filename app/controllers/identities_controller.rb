@@ -1,17 +1,15 @@
 class IdentitiesController < ApplicationController
 
-    # before_action :authenticate
+    before_action :authenticate
         # before_action :authorize[]
 
     def index
-        current_user
         # if params[:user_id]
         #     @identities = User.find(params[:user_id]).identities
         # else
         #     @identities = Identity.all
         # end
         @identities = Identity.all
-        
     end
 
     def new
@@ -21,7 +19,6 @@ class IdentitiesController < ApplicationController
     end
 
     def create
-        current_user
         # @identity = Identity.new(identity_params)
         # @identity.save
         # redirect_to identity_path(@identity)
@@ -54,5 +51,5 @@ class IdentitiesController < ApplicationController
 
     def identity_params
         params.require(:identity).permit(:pact_name, :description)
-      end
+    end
 end
