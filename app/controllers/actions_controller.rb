@@ -1,7 +1,7 @@
 class ActionsController < ApplicationController
     
     before_action :authenticate
-    before_action :get_action, only [:edit, :update]
+    # before_action :get_action, only [:edit, :update]
 
     def index
         # @actions = Action.all
@@ -17,9 +17,11 @@ class ActionsController < ApplicationController
     end
 
     def create
+       
         if params[:user_id]
             @user = User.find(id: params[:user_id])
             @action = @user.actions.build(action_params)
+        byebug
             if @action.save
                 redirect_to user_path(@user)
             else 
@@ -53,6 +55,7 @@ class ActionsController < ApplicationController
 
     def get_actions
         @action = Action.find(params[:id])
+    end
 
     def action_params
         params.require(:action).permit(:user_id, :habit_id, :action_step, :start_datetime, :location, :action_time, :day, :duration_number, :duration_type)
