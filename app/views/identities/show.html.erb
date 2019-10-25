@@ -10,10 +10,8 @@
     </p>
 <% end %>
 
-<%= form_tag '/join' do %>
-    <%= hidden_field_tag 'identity_id', @identity.id %>
-    <%= submit_tag "Join Pact" %>
-<% end %>
+<%= render partial: 'user_identities/form', locals: {identity: @identity} %>
+
 
 <% @identity.comments.each do |comment| %>
 <p><%= comment.content %> - <%= comment.user.username %></p>

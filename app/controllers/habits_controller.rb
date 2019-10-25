@@ -13,6 +13,8 @@ class HabitsController < ApplicationController
         # else
         #     @habit = Habit.new(identity_id: params[:identity_id])
         # end
+        @user = current_user
+        
         @habit = Habit.new
         # @habit.identity_habits.build
     end
@@ -39,16 +41,6 @@ class HabitsController < ApplicationController
     end
 
 
-    # def create
-
-    #     @habit = Habit.identity_habits.build(habit_params)
-    #     if @habit.save 
-    #         redirect_to habit_path(@habit) 
-    #     else
-    #         redirect_to new_habit_path
-    #     end
-    # end
-
     def edit
 
     end
@@ -60,6 +52,7 @@ class HabitsController < ApplicationController
     def show
         @habit = Habit.find(params[:id])
         @commentable = @habit
+        @action = @habit.actions
     end
 
     def habit_params

@@ -1,0 +1,47 @@
+<h3>Action:</h3>
+
+
+<%= form_with model: @action, url: [@habit, @action], local: true do |form| %>
+    <p>
+       I will: <%= form.text_field :action_step, placeholder: "Action Step" %>
+    </p>
+    <p>
+    <%= form.label :before %>
+    <%= form.radio_button :start_datetime, "Before" %>
+    <%= form.label :after %>
+    <%= form.radio_button :start_datetime, "After" %>
+    <%= form.text_field :start_datetime, placeholder: "Work, Schoool, etc.." %>
+    </p>
+    <p>
+        At: <%= form.text_field :location, placeholder: "Location" %>
+    </p>
+    <p>
+        At: <%= form.time_select :action_time, {ampm: true} %>
+    </p>
+    <p>
+        On: 
+        <%= form.label :day, "Sunday" %>
+        <%= form.check_box :day, {}, "Sunday", "" %>
+          <%= form.label :day, "Monday" %>
+        <%= form.check_box :day, {}, "Monday", "" %>
+          <%= form.label :day, "Tuesday" %>
+        <%= form.check_box :day, {}, "tuesday", "" %>
+          <%= form.label :day, "Wednesday" %>
+        <%= form.check_box :day, {}, "Wednesday", "" %>
+          <%= form.label :day, "Thursday" %>
+        <%= form.check_box :day, {}, "Thursday", "" %>
+          <%= form.label :day, "Friday" %>
+        <%= form.check_box :day, {}, "Friday", "" %>
+          <%= form.label :day, "Saturday" %>
+        <%= form.check_box :day, {}, "Saturday", "" %>
+    </p>
+    <p>
+        For: <%= form.number_field(:duration_number, in: 1..60) %>
+    </p>
+    <p>
+    <%= form.select :duration_type, ['Minutes', 'Hours']%>
+    </p>
+    <p>
+        <%= form.submit %>
+    </p>
+<% end %>

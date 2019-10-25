@@ -12,11 +12,49 @@
 
 
 <div>
-<%= form_with model: IdentityHabit.new, url: link_path, local: true do |form| %>
-    <%= form.collection_select :identity_id, Identity.all, :id, :pact_name, {:prompt => 'Select Identity'} %>
-    <%= hidden_field_tag 'habit_id', @habit.id %>
-<%= form.submit "Link Identity" %>
-<% end %>
+<%= render "identity_habits/form", locals: habit: @habit %>
 </div>
 
+
+
+
+
 <%= link_to "Back to List", habits_path %>
+
+
+
+
+<h3>Action:</h3>
+
+
+<%= form_with model: @action, url: habit_actions_path(@habit), local: true do |form| %>
+
+ <%= hidden_field_tag 'habit_id', @habit.id %>
+    <p>
+       I will: <%= form.text_field :action_step, placeholder: "Action Step" %>
+    </p>
+    <p>
+
+    <%= form.text_field :start_datetime, placeholder: "Work, Schoool, etc.." %>
+    </p>
+    <p>
+        At: <%= form.text_field :location, placeholder: "Location" %>
+    </p>
+    <p>
+        At: <%= form.time_select :action_time, {ampm: true} %>
+    </p>
+    <p>
+        On: 
+    <%= form.text_field :day, placeholder: "Monday, Tuesday, Wednesday..."%>
+      
+    </p>
+    <p>
+        For: <%= form.number_field(:duration_number, in: 1..60) %>
+    </p>
+    <p>
+    <%= form.select :duration_type, ['Minutes', 'Hours']%>
+    </p>
+    <p>
+        <%= form.submit 'Create Action'%>
+    </p>
+<% end %>

@@ -6,7 +6,7 @@ class Habit < ApplicationRecord
     has_many :users, through: :identities
     has_many :comments, as: :commentable, dependent: :destroy
 
-    # accepts_nested_attributes_for :identities
+#    accepts_nested_attributes_for :actions
 
     #scope method
 end
