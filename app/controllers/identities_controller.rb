@@ -26,7 +26,6 @@ class IdentitiesController < ApplicationController
         if params[:user_id]
             @user = User.find(id: params[:user_id])
             @identity = @user.identities.build(identity_params)
-byebug
             if @identity.save
                 redirect_to user_path(@user)
             else 

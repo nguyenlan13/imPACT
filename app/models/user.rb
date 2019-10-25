@@ -10,7 +10,7 @@ class User < ApplicationRecord
     has_many :user_identities, dependent: :destroy
     has_many :identities, through: :user_identities
     has_many :habits, through: :identities
-    has_many :actions, dependent: :destroy
+    has_many :steps, dependent: :destroy
     has_many :streaks, dependent: :destroy
     has_many :comments, dependent: :destroy
     has_many :reactions, dependent: :destroy

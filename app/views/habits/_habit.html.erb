@@ -1,4 +1,10 @@
-<h3><%= habit.title %></h3>
 
-<p><%= habit.frequency_number %></p>
-<p><%= habit.frequency %></p>
+
+<% if habit.build == true %>
+<h3>I will <%= habit.title %></h3> 
+<% end %>
+
+<% if habit.build == false %>
+<h3>I will NOT <%= habit.title %></h3>
+<% end %>
+<h4><%= habit.frequency_number %>x per <%= habit.frequency %></h4>

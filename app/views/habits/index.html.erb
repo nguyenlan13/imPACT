@@ -1,12 +1,12 @@
-<h2>Habits</h2>
-<%= link_to "Add Habit", new_habit_path %>
+
+<h2>Habits</h2> 
+
+<p> <%= link_to "Add Habit", new_habit_path %> </p>
 <div>
     <% @habits.each do |habit| %>
-
     <% habit.identities.each do |identity| %>
-
+   
         <%= render "habit", habit: habit %>
-        
         <% end %>
     <% end %>
 </div>

@@ -12,20 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_10_15_133358) do
 
-  create_table "actions", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "habit_id"
-    t.string "action_step"
-    t.string "start_datetime"
-    t.string "location"
-    t.time "action_time"
-    t.string "day"
-    t.integer "duration_number"
-    t.string "duration_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
     t.text "content"
@@ -67,6 +53,27 @@ ActiveRecord::Schema.define(version: 2019_10_15_133358) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["reactable_type", "reactable_id"], name: "index_reactions_on_reactable_type_and_reactable_id"
+  end
+
+  create_table "steps", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "habit_id"
+    t.string "action_step"
+    t.boolean "before", default: true
+    t.string "start_datetime"
+    t.string "location"
+    t.time "action_time"
+    t.boolean "monday", default: true
+    t.boolean "tuesday", default: true
+    t.boolean "wednesday", default: true
+    t.boolean "thursday", default: true
+    t.boolean "friday", default: true
+    t.boolean "saturday", default: true
+    t.boolean "sunday", default: true
+    t.integer "duration_number"
+    t.string "duration_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "streaks", force: :cascade do |t|

@@ -50,9 +50,10 @@ class HabitsController < ApplicationController
     end
 
     def show
+        @user = current_user
         @habit = Habit.find(params[:id])
         @commentable = @habit
-        @action = @habit.actions
+        @action = @habit.steps
     end
 
     def habit_params

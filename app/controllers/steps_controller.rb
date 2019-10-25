@@ -1,4 +1,4 @@
-class ActionsController < ApplicationController
+class StepsController < ApplicationController
     
     before_action :authenticate
     # before_action :get_action, only [:edit, :update]
@@ -10,14 +10,14 @@ class ActionsController < ApplicationController
         # end
         @user = current_user
         if params[:habit_id]
-            @actions = Habit.find(params[:habit_id]).actions
+            @actions = Habit.find(params[:habit_id]).steps
         end
     end
 
     def new
         @user = current_user
         @habit = Habit.find(params[:habit_id])
-        @action = @habit.actions.build
+        @action = @habit.steps.build
         # @action = @user.actions.build
         # @action = Action.new
     end
@@ -37,17 +37,17 @@ class ActionsController < ApplicationController
        
             if params[:habit_id]
                 @habit = Habit.find(params[:habit_id])
-                @action = @habit.actions.build(action_params)
-   byebug
+                @action = @habit.steps.build(step_params)
+#    byebug
                 if @action.save
-                    redirect_to habit_actions_path(@habit)
+                    redirect_to habit_steps_path(@habit)
                 else 
-                   redirect_to new_action_path
+                   redirect_to new_step_path
                 end
         else
-            @action = Action.new(action_params)
+            @action = Action.new(step_params)
             if @action.save 
-                redirect_to action_path(@action) 
+                redirect_to step_path(@action) 
             else
                 render :new
                 # redirect_to new_action_path
@@ -60,21 +60,21 @@ class ActionsController < ApplicationController
     end
 
     def update
-        @action.update(action_params)
-        redirect_to habit_actions_path(@habit)
+        @action.update(step_params)
+        redirect_to habit_steps_path(@habit)
     end
 
     def show
-        @action = Action.find(params[:id])
+        @action = Step.find(params[:id])
     end
 
     private
 
     def get_actions
-        @action = Action.find(params[:id])
+        @action = Step.find(params[:id])
     end
 
-    def action_params
-        params.require(:action).permit(:user_id, :habit_id, :action_step, :start_datetime, :location, :action_time, :day, :duration_number, :duration_type)
+    def step_params
+        params.require(:step).permit(:user_id, :habit_id, :action_step, :before, :start_datetime, :location, :action_time, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :duration_number, :duration_type)
     end
 end

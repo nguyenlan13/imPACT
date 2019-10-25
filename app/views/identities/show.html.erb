@@ -14,11 +14,12 @@
 
 
 <% @identity.comments.each do |comment| %>
-<p><%= comment.content %> - <%= comment.user.username %></p>
+    <p><%= comment.content %> - <%= comment.user.username %></p>
 <% end %>
 
-<p><%= render partial: "comments/form", locals: {commentable: @identity}%></p>
+
+<p><%= render partial: 'comments/form', locals: {commentable: @identity}%></p>
 
 
 
-<%= link_to "Back to List", identities_path %>
+<%= link_to "Back to Identities List", identities_path %>

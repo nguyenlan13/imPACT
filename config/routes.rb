@@ -2,7 +2,7 @@ Rails.application.routes.draw do
     # resources :reactions
     resources :comments
     resources :streaks
-    resources :actions
+    resources :steps
     resources :identities
     resources :habits
     resources :users, except: [:new]
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     end
 
     resources :habits do
-        resources :actions
+        resources :steps
         resources :streaks, only: [:index]
         resources :comments
         resources :reactions
