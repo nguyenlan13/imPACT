@@ -4,50 +4,32 @@ class StepsController < ApplicationController
     # before_action :get_action, only [:edit, :update]
 
     def index
-        # @actions = Action.all
-        # if params[:user_id]
-        #     @actions = User.find(params[:user_id]).actions
-        # end
         @user = current_user
         if params[:habit_id]
-            @actions = Habit.find(params[:habit_id]).steps
+            @steps = Habit.find(params[:habit_id]).steps
         end
     end
 
     def new
-        @user = current_user
+        @user = current_user  
         @habit = Habit.find(params[:habit_id])
-        @action = @habit.steps.build
-        # @action = @user.actions.build
-        # @action = Action.new
-    end
+        @step = @habit.steps.build
+     end
 
-    def create
-       
-        # if params[:user_id]
-        #     @user = User.find(id: params[:user_id])
-        #     @action = @user.actions.build(action_params)
-        # byebug
-        #     if @action.save
-        #         redirect_to user_path(@user)
-        #     else 
-        #        redirect_to new_action_path
-        #     end
-        @user = current_user
-       
-            if params[:habit_id]
-                @habit = Habit.find(params[:habit_id])
-                @action = @habit.steps.build(step_params)
-#    byebug
-                if @action.save
-                    redirect_to habit_steps_path(@habit)
-                else 
-                   redirect_to new_step_path
-                end
+    def create       
+        if params[:habit_id]
+            @habit = Habit.find(params[:habit_id])
+            @step = @habit.steps.build(step_params)
+            @step.user = current_user
+            if @step.save
+                redirect_to habit_steps_path(@habit)
+            else 
+                redirect_to new_step_path
+            end
         else
-            @action = Action.new(step_params)
-            if @action.save 
-                redirect_to step_path(@action) 
+            @step = Step.new(step_params)
+            if @step.save 
+                redirect_to step_path(@step) 
             else
                 render :new
                 # redirect_to new_action_path
@@ -60,18 +42,18 @@ class StepsController < ApplicationController
     end
 
     def update
-        @action.update(step_params)
+        @step.update(step_params)
         redirect_to habit_steps_path(@habit)
     end
 
     def show
-        @action = Step.find(params[:id])
+        @step = Step.find(params[:id])
     end
 
     private
 
     def get_actions
-        @action = Step.find(params[:id])
+        @step = Step.find(params[:id])
     end
 
     def step_params

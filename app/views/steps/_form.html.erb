@@ -1,9 +1,9 @@
 
 
-<%= form_with model: @action, url: habit_actions_path(@habit), local: true do |form| %>
+<%= form_with model: ([@habit, @step]), url: habit_steps_path(@habit), local: true do |form| %>
+ <%= hidden_field_tag "habit_id", @habit.id %>
     <p>
        I will: <%= form.text_field :action_step, placeholder: "Action" %>
-        <%= hidden_field_tag 'habit_id', @habit.id %>
     </p>
     <p>
         <%= form.label :before %>
@@ -49,7 +49,7 @@
     <p>
     <%= form.select :duration_type, ['Minutes', 'Hours']%>
     </p>
-    
+
     <p>
         <%= form.submit 'Create Action'%>
     </p>
