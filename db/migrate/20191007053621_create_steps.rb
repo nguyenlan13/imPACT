@@ -8,13 +8,13 @@ class CreateSteps < ActiveRecord::Migration[6.0]
         t.string :start_datetime
         t.string :location
         t.time :action_time
-        t.boolean :monday, default: true
-        t.boolean :tuesday, default: true
-        t.boolean :wednesday, default: true
-        t.boolean :thursday, default: true
-        t.boolean :friday, default: true
-        t.boolean :saturday, default: true
-        t.boolean :sunday, default: true
+        t.boolean :monday, default: false
+        t.boolean :tuesday, default: false
+        t.boolean :wednesday, default: false
+        t.boolean :thursday, default: false
+        t.boolean :friday, default: false
+        t.boolean :saturday, default: false
+        t.boolean :sunday, default: false
         t.integer :duration_number
         t.string :duration_type
         t.timestamps
