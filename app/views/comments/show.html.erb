@@ -1,1 +1,8 @@
 <%= render "comment" %>
+
+<% @comment.comments.each do |comment| %>
+    <p><%= comment.content %> - <%= comment.user.username %></p>
+<% end %>
+
+
+<p><%= render partial: 'comments/form', locals: {commentable: @comment}%></p>
