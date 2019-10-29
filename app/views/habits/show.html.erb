@@ -1,5 +1,5 @@
 <div>
-<h4>Link to Identity</h4>
+<h4>Link this Habit to an Identity</h4>
 <%= render "identity_habits/form" %>
 </div>
 <p><%= link_to "Back to Habits List", habits_path %></p>
@@ -8,81 +8,31 @@
 <br>
 <br>
 <h3>Habit:</h3>
-<% @habit.identities.each do |identity| %>
-
 <%= render 'habit', habit: @habit %>
-
-<p>Linked to <%= link_to identity.description %> </p>
-
+<% @habit.identities.each do |identity| %>
+<p>Linked to <%= link_to identity.description %> <%= link_to "Unlink", "/unlink", method: :delete %></p>
 <% end %>
 <br>
         <h3>Followers: </h3>
 <% @habit.users.each do |user| %>
     <p>
         <div>
-            <%= link_to user.name, user_path(user)%> 
+            <%= link_to user.username, user_path(user)%> 
         </div>
     </p>
 <% end %>
 
-
-
-
 <br>
-<br>
-<h3>Action Steps:</h3>
-
-<%= form_with model: @action, url: habit_steps_path(@habit), local: true do |form| %>
- <%= hidden_field_tag 'habit_id', @habit.id %>
-    <p>
-       I will: <%= form.text_field :action_step, placeholder: "Action" %>
-    </p>
-    <p>
-        <%= form.label :before %>
-        <%= form.radio_button :before, true %>
-        <%= form.label :after %>
-        <%= form.radio_button :before, false %>
-        <%= form.text_field :start_datetime, placeholder: "Work, Schoool, etc.." %>
-    </p>
-    <p>
-        At: <%= form.text_field :location, placeholder: "Location" %>
-    </p>
-    <p>
-        At: <%= form.time_select :action_time, {ampm: true} %>
-    </p>
-    <p>
-        On: 
-        <%= form.label :monday %>
-        <%= form.radio_button :monday, true %>
-      
-        <%= form.label :tuesday %>
-        <%= form.radio_button :tuesday, true %>
-
-        <%= form.label :wednesday %>
-        <%= form.radio_button :wednesday, true %>
-
-        <%= form.label :thursday %>
-        <%= form.radio_button :thursday, true %>
-
-        <%= form.label :friday %>
-        <%= form.radio_button :friday, true %>
-
-        <%= form.label :saturday %>
-        <%= form.radio_button :saturday, true %>
-
-        <%= form.label :sunday %>
-        <%= form.radio_button :sunday, true %>
-    </p>
-
-    <p>
-        For: <%= form.number_field(:duration_number, in: 1..60) %>
-    </p>
-
-    <p>
-    <%= form.select :duration_type, ['Minutes', 'Hours']%>
-    </p>
-
-    <p>
-        <%= form.submit 'Create Action'%>
-    </p>
+<h3>Comments: </h3>
+<% @habit.comments.each do |comment| %>
+    <p><%= comment.content %> - <%= comment.user.username %></p>
 <% end %>
+
+
+<br>
+
+<p><%= render partial: 'comments/form', locals: {commentable: @habit}%></p>
+
+
+<br>
+<h4><%= link_to "Add Action Steps", new_habit_step_path(@habit, @step) %></h4>
