@@ -20,26 +20,27 @@
     </p>
     <p>
         On: 
+
         <%= form.label :monday %>
-        <%= form.radio_button :monday, true %>
-      
+        <%= form.check_box :monday %>
+  
         <%= form.label :tuesday %>
-        <%= form.radio_button :tuesday, true %>
+        <%= form.check_box :tuesday%>
 
         <%= form.label :wednesday %>
-        <%= form.radio_button :wednesday, true %>
+        <%= form.check_box :wednesday %>
 
         <%= form.label :thursday %>
-        <%= form.radio_button :thursday, true %>
+        <%= form.check_box :thursday %>
 
         <%= form.label :friday %>
-        <%= form.radio_button :friday, true %>
+        <%= form.check_box :friday %>
 
         <%= form.label :saturday %>
-        <%= form.radio_button :saturday, true %>
+        <%= form.check_box :saturday %>
 
         <%= form.label :sunday %>
-        <%= form.radio_button :sunday, true %>
+        <%= form.check_box :sunday%>
     </p>
 
     <p>
@@ -51,6 +52,7 @@
     </p>
 
     <p>
-        <%= form.submit 'Create Action'%>
+
+            <%= form.submit 'Edit Action'%>
     </p>
 <% end %>
