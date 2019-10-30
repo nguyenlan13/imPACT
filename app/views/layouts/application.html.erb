@@ -13,10 +13,11 @@
     <header>
     <%= navbar %>
     <h1>imPACT</h1>
+   
         <% flash.each do |k, v| %>
-            <div><%= v %></div>
+            <div class="warning"><%= v %></div>
         <% end %>
-
+  
     </header>
     <%= yield %>
   </body>
