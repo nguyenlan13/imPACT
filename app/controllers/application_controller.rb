@@ -1,19 +1,32 @@
 class ApplicationController < ActionController::Base
     helper_method :logged_in?
     helper_method :current_user
+    helper_method :owner?
+
+
+
+    rescue_from ActiveRecord::RecordNotFound, :with => :rescue404
+    rescue_from ActionController::RoutingError, :with => :rescue404
+    rescue_from ActionController::InvalidAuthenticityToken, :with => :rescue403
+    rescue_from Errors::AuthorizationError, with: :rescue403 
 
     private
 
-    #add rescue 404
-    #add rescue 403
+    def rescue404
+        render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false)
+    end
+
+    def rescue403
+        render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
+    end
 
     def owner?(resource)
         resource.user == current_user
     end
 
-    # def authorize(resource)
-    #     if !owner?(resource)
-    # end
+    def authorize(resource)
+        raise Errors::AuthorizationError.new if !owner?(resource)
+    end
 
 
     def log_in(user)
@@ -31,4 +44,5 @@ class ApplicationController < ActionController::Base
     def authenticate
         redirect_to login_path if !logged_in?
     end
+
 end
