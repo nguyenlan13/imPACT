@@ -19,8 +19,18 @@
 <% end %>
 
 <% @user.habits.each do |habit| %>
-    <%= render 'habit', habit: habit %>
+<%= render 'habit', habit: habit %>
+
+<% if @user == current_user %>
+    <%= render "step" %>
+<% end %> 
+<%= link_to "Add Action Step", new_habit_step_path(habit) %>
 <% end %>
+
+
 <% if @user == current_user %>
   <%= link_to "Add Habit", new_habit_path%>
 <% end %>
+
+
+
