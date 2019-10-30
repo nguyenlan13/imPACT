@@ -10,7 +10,7 @@
 <h3>Habit:</h3>
 <%= render 'habit', habit: @habit %>
 <% @habit.identities.each do |identity| %>
-<p>Linked to <%= link_to identity.description %> <%= link_to "Unlink", "/unlink", method: :delete %></p>
+<p>Linked to <%= link_to identity.description %> <%= link_to "Unlink", "/unlink" %></p>
 <% end %>
 <br>
 

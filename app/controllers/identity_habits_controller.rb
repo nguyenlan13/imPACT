@@ -13,10 +13,7 @@ class IdentityHabitsController < ApplicationController
     end
 
     def destroy
-        IdentityHabit.find(params[:id]).destroy
-        # identity = Identity.find(params[:id]
-        # # identity.identity_habits.find(params[:identity_habit_id]).destroy
-        # IdentityHabit.find(identity.id, habit.id).destroy
+        IdentityHabit.find_by(habit: params[:habit_id], identity: params[:identity_id]).delete
         redirect_to(request.env['HTTP_REFERER'])
     end
 end
