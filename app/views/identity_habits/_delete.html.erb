@@ -1,0 +1,7 @@
+
+
+
+  <%= form_with url: unlink_path, method: "delete" do |f|%>
+        <%= hidden_field_tag 'habit_id', @habit.id %>
+        <%= f.submit "Unlink Identity" %></div>
+<% end %>
