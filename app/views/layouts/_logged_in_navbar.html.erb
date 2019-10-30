@@ -1,1 +1,1 @@
-<%=  button_to "Logout", "/logout", method: :delete %>
+<p> <%= link_to "Home", dashboard_path %>  <%= link_to "My Profile", user_path(current_user) %>  <%= link_to "My Habits", user_habits_path(current_user) %>  <%= link_to "My Progress", user_streaks_path(current_user) %>  <%= link_to "See All PACTS", identities_path %>  <%= link_to "Logout", "/logout", method: :delete %></p>
