@@ -1,0 +1,8 @@
+<h4>PACT Members: </h4>
+
+<% @users.each do |user| %>
+
+<%= link_to user.username, user_path(user) %>
+
+<br>
+<% end %>
