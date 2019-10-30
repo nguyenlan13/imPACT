@@ -7,4 +7,4 @@ I WILL <%= link_to habit.title, habit_path(habit)%>
 <% if habit.build == false %>
 I WILL NOT <%= link_to habit.title, habit_path(habit) %>
 <% end %>
-<%= habit.frequency_number %>x per <%= habit.frequency %></h4>
+<%= habit.frequency_number %> times per <%= habit.frequency %></h4>

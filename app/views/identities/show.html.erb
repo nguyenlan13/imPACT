@@ -16,7 +16,7 @@
 <h3>Comments: </h3>
 
 <% @identity.comments.each do |comment| %>
-    <p><%= render partial: "comments/comment", locals: {comment: comment} %></p>
+    <p><%= render partial: "comments/comment", locals: {commentable: @identity, comment: comment, user: @user} %></p>
 <% end %>
 
 
