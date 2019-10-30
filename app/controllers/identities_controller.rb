@@ -19,24 +19,20 @@ class IdentitiesController < ApplicationController
     end
 
     def create
-        # @identity = Identity.new(identity_params)
-        # @identity.save
-        # redirect_to identity_path(@identity)
-
         if params[:user_id]
             @user = User.find(id: params[:user_id])
             @identity = @user.identities.build(identity_params)
             if @identity.save
-                redirect_to user_path(@user)
+                redirect_to user_identities_path(@user)
             else 
-               redirect_to new_identity_path(@identity)
+                render :new
             end
         else
             @identity = Identity.new(identity_params)
             if @identity.save 
-                redirect_to user_identities_path(@user) 
+                redirect_to identities_path
             else
-                redirect_to new_identity_path
+                render :new
             end
         end 
     end
@@ -46,6 +42,7 @@ class IdentitiesController < ApplicationController
     # end
 
     def show
+        @user = current_user
         @identity = Identity.find(params[:id])
         @commentable = @identity
     end
