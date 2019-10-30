@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
     # resources :reactions
-    resources :comments
+    # resources :comments
     resources :streaks
-    resources :steps
-    resources :identities
+    # resources :steps
+    resources :identities, only: [:index, :new, :create]
     resources :habits
     resources :users, except: [:new]
     
     resources :users do  
         resources :identities, only: [:index, :new, :create]
         resources :habits
+        # resources :steps
         resources :streaks, only: [:index]
         resources :comments
     end
@@ -40,7 +41,9 @@ Rails.application.routes.draw do
     delete "/logout" => "sessions#destroy"
     get "/dashboard" => "users#dashboard", as: "dashboard"
     post "/join" => "user_identities#create", as: "join"
+    delete "/leave" => "user_identities#destroy", as: "leave_pact"
     post "/link" => "identity_habits#create", as: "link"
+    delete "/unlink" => "identity_habits#destroy", as: "unlink"
     root 'sessions#new'
 
     # Routes for Google authentication
