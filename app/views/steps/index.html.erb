@@ -1,3 +1,7 @@
 <h3>Action Steps:</h3>
+<p><%= link_to "Add Action Step", new_habit_step_path %></p>
+<% @steps.each do |step| %>
+<%= render 'habits/habit', habit: step.habit %>
+<%= render "step", step: step %> 
 
-<%= render "step" %>
+<% end %></p>

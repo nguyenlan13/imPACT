@@ -1,4 +1,5 @@
-<% @habit.steps.each do |step| %>
+
+
 I WILL <%= step.action_step %>
 
 <% if step.before == true %>
@@ -35,6 +36,7 @@ SATURDAY
 SUNDAY
 <% end %>
 
-FOR <%= step.duration_number %> <%= step.duration_type %>
+FOR <%= step.duration_number %> <%= step.duration_type %> <%= link_to "Edit Step", edit_habit_step_path(step.habit, step) %>
 <br>
-<% end %></p>
+
+
