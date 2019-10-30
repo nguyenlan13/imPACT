@@ -1,7 +1,7 @@
 class StepsController < ApplicationController
     
     before_action :authenticate
-    # before_action :get_action, only [:edit, :update]
+    # before_action :get_step, only [:edit, :update]
 
     def index
         @user = current_user
@@ -27,8 +27,8 @@ class StepsController < ApplicationController
             @step = @habit.steps.build(step_params)
             @step.user = current_user
             if @step.save
-                redirect_to user_steps_path(current_user)
-                # redirect_to habit_steps_path(@habit)
+                # redirect_to user_steps_path(current_user)
+                redirect_to habit_steps_path(@habit)
             else
                 flash[:danger] = "Action was not saved, please try again."
                 render :new
@@ -45,27 +45,22 @@ class StepsController < ApplicationController
     end
 
     def edit
-        @step = Step.find(params[:id])
-        render :edit
-        # if params[:habit_id]
-        # @user = current_user  
-        # @habit = Habit.find(params[:habit_id])
-        # # # @step = @habit.steps.build
-        # @step = @habit.steps.find(params[:id])
-        # @user = current_user  
-        # @habit = Habit.find(params[:habit_id])
-        # @step = @habit.steps.build
-        # end
+        @user = current_user  
+        @habit = Habit.find(params[:habit_id])
+        @step = @habit.steps.find(params[:id])
     end
 
     def update
-        @step.update(step_params)
+        @user = current_user 
+        @habit = Habit.find(params[:habit_id])
+        @step = @habit.steps.find(params[:id])
+        if @step.update(step_params)
         byebug
-        if @step.save
-            redirect_to user_steps_path(current_user)
-            # redirect_to habit_steps_path(@habit)
+        # if @step.save
+            # redirect_to user_steps_path(current_user)
+            redirect_to habit_steps_path(@habit)
         else
-            flash[:danger] = "Action was not updated, please try again."
+            flash[:danger] = "Action step was not updated, please try again."
             render :edit
         end
         # redirect_to habit_steps_path(@habit)
@@ -82,7 +77,7 @@ class StepsController < ApplicationController
 
     private
 
-    def get_actions
+    def get_steps
         @step = Step.find(params[:id])
     end
 
