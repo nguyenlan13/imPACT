@@ -13,19 +13,12 @@
 <p>Linked to <%= link_to identity.description %> <%= link_to "Unlink", "/unlink", method: :delete %></p>
 <% end %>
 <br>
-        <h3>Followers: </h3>
-<% @habit.users.each do |user| %>
-    <p>
-        <div>
-            <%= link_to user.username, user_path(user)%> 
-        </div>
-    </p>
-<% end %>
+
 
 <br>
 <h3>Comments: </h3>
 <% @habit.comments.each do |comment| %>
-    <p><%= comment.content %> - <%= comment.user.username %></p>
+    <p><%= render partial: "comments/comment", locals: {comment: comment} %></p>
 <% end %>
 
 
