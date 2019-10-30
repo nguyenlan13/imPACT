@@ -14,13 +14,11 @@ class HabitsController < ApplicationController
         #     @habit = Habit.new(identity_id: params[:identity_id])
         # end
         @user = current_user
-        
         @habit = Habit.new
         # @habit.identity_habits.build
     end
 
     def create
-  
         if params[:user_id]
             @user = User.find(id: params[:user_id])
             @habit = @user.habits.build(habit_params)
@@ -28,14 +26,15 @@ class HabitsController < ApplicationController
                 redirect_to user_path(@user)
             else
                 flash[:danger] = "Habit was not saved!"
-               redirect_to new_habit_path
+                render :new
             end
         else
             @habit = Habit.new(habit_params)
             if @habit.save 
-                redirect_to habit_path(@habit) 
+                redirect_to user_path(current_user) 
             else
-                redirect_to new_habit_path
+                flash[:danger] = "Habit was not saved! Please try again."
+                render :new
             end
         end
     end
@@ -52,8 +51,9 @@ class HabitsController < ApplicationController
     def show
         @user = current_user
         @habit = Habit.find(params[:id])
+        @step = @habit.steps.build
         @commentable = @habit
-        @action = @habit.steps
+        
     end
 
     def habit_params
