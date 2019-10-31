@@ -1,0 +1,5 @@
+<%= form_with model: UserIdentity.new, url: leave_pact_path, method: "delete", local: true do |f| %>
+    <%= hidden_field_tag 'user_id', user.id %>
+    <%= hidden_field_tag 'identity_id', identity.id %>
+    <%= f.submit "Leave Pact" %></div>
+<% end %>
