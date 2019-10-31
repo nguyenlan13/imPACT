@@ -13,7 +13,12 @@ class IdentityHabitsController < ApplicationController
     end
 
     def destroy
-        IdentityHabit.find_by(habit: params[:habit_id], identity: params[:identity_id]).delete
-        redirect_to(request.env['HTTP_REFERER'])
+        identity_habit = IdentityHabit.find_by(habit: params[:habit_id], identity: params[:identity_id])
+        if identity_habit.delete
+            redirect_to(request.env['HTTP_REFERER'])
+        else
+            flash[:danger] = "Sorry, could not unlink."
+            redirect_to(request.env['HTTP_REFERER'])
+        end
     end
 end
