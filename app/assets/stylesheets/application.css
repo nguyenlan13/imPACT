@@ -22,3 +22,98 @@
     color: rgb(255, 255, 255);
     border-color: rgb(3, 30, 47), 146, 161);
   }
+
+
+html {
+  background-image: url(blu_stripes.png);
+  background-repeat: repeat;
+  font-family: Tahoma,Verdana,Segoe,sans-serif;
+  margin-left: 1em;
+}
+
+/* h1{
+  margin-bottom: -1em;
+} */
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #005f6d;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  position: relative;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #33892d;
+  }
+  
+li a:active {
+  background-color: #f791a4;  
+}
+
+.box {
+  color: white;
+  width: 500px;
+  height: 15px;
+  background: #827973;
+  opacity: 0.75;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 1em;
+}
+
+.green {
+  border: 3px solid #33892d;
+}
+
+.orange {
+  border: 3px solid #ff9d60;
+}
+
+.blue {
+  border: 3px solid #005f6d;
+}
+
+.pink {
+  border: 3px solid #f791a4;
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #33892d;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 6px #999;
+}
+
+.button:hover {
+  background-color: #f791a4;
+  transition-duration: 0.4s;
+}
+
+.button:active {
+  background-color: #f791a4;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
