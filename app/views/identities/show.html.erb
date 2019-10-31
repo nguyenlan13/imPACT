@@ -1,8 +1,8 @@
 
-<h3>IDentity: I'm a/an <%= @identity.description %> </h3>
+<h3>IDentity: I'm A <%= @identity.description %> </h3>
 
 <%= render partial: "user_identities/leave", locals: {user: @user, identity: @identity} %>
-
+<br>
 <%= link_to "Back to Identities List", identities_path %>
 
         <h3><%= @identity.pact_name %> Members: </h3>

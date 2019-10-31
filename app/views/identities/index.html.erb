@@ -1,9 +1,10 @@
-<h3>Identities</h3>
+<h3>IDentities</h3>
 <%= link_to "Add Identity", new_identity_path %>
 <div>
     <% @identities.each do |identity| %>
-    <%= render "identity", identity: identity %>
-      <% end %>
+ <%= render "identity", identity: identity %>
+ <%= render partial: "user_identities/form", locals: {identity: identity} %>
+<% end %>
 </div>
 
 
