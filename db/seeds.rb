@@ -16,8 +16,8 @@ athletic_person = Identity.create(pact_name: "Fitness Junkies", description: "At
 
 #habit
 programming_habit = Habit.create(build: true, title: "Code", frequency_number: 1, frequency: "Day")
-sleeping = Habit.create(build: true, title: "Sleep", frequency_number: 1, frequency: "Day")
-junk = Habit.create(build: false, title: "Junk Food", frequency_number: 2, frequency: "Day")
+# sleeping = Habit.create(build: true, title: "Sleep", frequency_number: 1, frequency: "Day")
+# junk = Habit.create(build: false, title: "Junk Food", frequency_number: 2, frequency: "Day")
 
 #user_identity
 # user_ident = UserIdentity.create(user: lan, identity: great_programmer)
@@ -36,16 +36,16 @@ junk = Habit.create(build: false, title: "Junk Food", frequency_number: 2, frequ
 # sleep_actions = Action.create(user: lan, habit: sleeping, action_step: "Go to sleep", start_datetime: "After Work", location: "Home", duration_number: 6, duration_type: "hours")
 
 
-programmer_action = Step.create(user: lan, habit: programming_habit, action_step: "Work on a Coding Challenge", before: true, start_datetime: "Work", location: "Home", monday: true, tuesday: true, wednesday: true, thursday: false, friday: false, saturday: false, sunday: false, duration_number: 2, duration_type: "hours")
-skinny_actions = Step.create(user: lan, habit: junk, action_step: "Eat candy", before: false, start_datetime: "Work", location: "Home")
-sleep_actions = Step.create(user: lan, habit: sleeping, action_step: "Go to sleep", before: false, start_datetime: "Work", location: "Home", duration_number: 6, duration_type: "hours")
+# programmer_action = Step.create(user: lan, habit: programming_habit, action_step: "Work on a Coding Challenge", before: true, start_datetime: "Work", location: "Home", monday: true, tuesday: true, wednesday: true, thursday: false, friday: false, saturday: false, sunday: false, duration_number: 2, duration_type: "hours")
+# skinny_actions = Step.create(user: lan, habit: junk, action_step: "Eat candy", before: false, start_datetime: "Work", location: "Home")
+# sleep_actions = Step.create(user: lan, habit: sleeping, action_step: "Go to sleep", before: false, start_datetime: "Work", location: "Home", duration_number: 6, duration_type: "hours")
 
 #pact
 # pact1 = Pact.create(name: "coding_newbies")
 
 #streak
 pact1_streak = Streak.create(user: lan, habit: programming_habit, current_streak: 5, longest_streak: 7)
-pact2_streak = Streak.create(user: lan, habit: junk, current_streak: 8, longest_streak: 10)
+# pact2_streak = Streak.create(user: lan, habit: junk, current_streak: 8, longest_streak: 10)
 #user_pact
 # UserPact.create(user: lan, pact: pact1)
 # UserPact.create(user: new_dev, pact: pact1)
