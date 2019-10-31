@@ -1,7 +1,11 @@
 
-<h3>Identity: <%= @identity.description %> </h3>
+<h3>IDentity: I'm a/an <%= @identity.description %> </h3>
 
-        <h3>PACT Members: </h3>
+<%= render partial: "user_identities/leave", locals: {user: @user, identity: @identity} %>
+
+<%= link_to "Back to Identities List", identities_path %>
+
+        <h3><%= @identity.pact_name %> Members: </h3>
 <% @identity.users.each do |user| %>
     <p>
         <div>
@@ -25,5 +29,6 @@
 <p><%= render partial: 'comments/form', locals: {commentable: @identity}%></p>
 
 
+<%= link_to "Add a Habit", new_habit_path %>
+<br>
 
-<%= link_to "Back to Identities List", identities_path %>

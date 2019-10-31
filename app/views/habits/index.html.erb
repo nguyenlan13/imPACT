@@ -4,9 +4,8 @@
 <p> <%= link_to "Add Habit", new_habit_path %> </p>
 <div>
     <% @habits.each do |habit| %>
-    <% habit.identities.each do |identity| %>
-   
-        <%= render "habit", habit: habit %>
-        <% end %>
+    
+        <%= render "habit", habit: habit%>
+    
     <% end %>
 </div>

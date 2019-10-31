@@ -1,18 +1,16 @@
+<h3>Habit:</h3>
+<%= render 'habit', habit: @habit %>
+<% @habit.identities.each do |identity| %>
+<p>Linked to <%= link_to identity.description %> <%= render partial: "identity_habits/delete", locals: {identity: identity, habit: @habit} %></p>
+<% end %>
+<br>
+
 <div>
 <h4>Link this Habit to an Identity</h4>
 <%= render "identity_habits/form" %>
 </div>
 <p><%= link_to "Back to Habits List", habits_path %></p>
 
-
-<br>
-<br>
-<h3>Habit:</h3>
-<%= render 'habit', habit: @habit %>
-<% @habit.identities.each do |identity| %>
-<p>Linked to <%= link_to identity.description %> <%= link_to "Unlink", "/unlink" %></p>
-<% end %>
-<br>
 
 
 <br>
