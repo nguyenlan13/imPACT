@@ -11,7 +11,7 @@ AFTER <%= step.start_datetime %>
 <% end %>
 
 AT <%= step.location %>
-AT <%= step.action_time %>
+AT <%= step.action_time.strftime("%l:%M %p")%>
 
 ON 
 <% if step.monday == true %>
@@ -36,7 +36,7 @@ SATURDAY
 SUNDAY
 <% end %>
 
-FOR <%= step.duration_number %> <%= step.duration_type %> <%= link_to "Edit Step", edit_habit_step_path(step.habit, step) %>
+FOR <%= step.duration_number %> <%= step.duration_type %> 
 <br>
 
 

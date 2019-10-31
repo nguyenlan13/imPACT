@@ -1,6 +1,6 @@
 
 
-<%= form_with model: ([habit, step]), url: habit_steps_path(habit), local: true do |form| %>
+<%= form_with model: ([habit, step]), local: true do |form| %>
  <%= hidden_field_tag "habit_id", habit.id %>
     <p>
        I will: <%= form.text_field :action_step, placeholder: "Action" %>
@@ -53,6 +53,6 @@
 
     <p>
 
-        <%= form.submit 'Create Action'%>
+        <%= form.submit step.id.nil? ? 'Create Action' : "Edit Action" %>
     </p>
 <% end %>
