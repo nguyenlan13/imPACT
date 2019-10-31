@@ -5,13 +5,10 @@ class StepsController < ApplicationController
 
     def index
         @user = current_user
-        if params[:habit_id]
-            # @habit = Habit.find(params[:habit_id])
-            # @steps = @habit.steps
+        if params[:user_id]
+            @steps = User.find(params[:user_id]).steps
+        else params[:habit_id]
             @steps = Habit.find(params[:habit_id]).steps
-            # @step.user = current_user
-        # else
-        #     @steps = Step.all
         end
     end
 
@@ -55,7 +52,6 @@ class StepsController < ApplicationController
         @habit = Habit.find(params[:habit_id])
         @step = @habit.steps.find(params[:id])
         if @step.update(step_params)
-        byebug
         # if @step.save
             # redirect_to user_steps_path(current_user)
             redirect_to habit_steps_path(@habit)
@@ -71,8 +67,13 @@ class StepsController < ApplicationController
     end
 
     def destroy
-        @step = Step.find(params[:id])
-        @step.delete
+       @step = Step.find(params[:id])
+       if @step.delete
+            redirect_to(request.env['HTTP_REFERER'])
+       else
+            flash[:danger] = "Action step could not be deleted"
+            redirect_to(request.env['HTTP_REFERER'])
+       end
     end
 
     private

@@ -2,7 +2,11 @@ class UsersController < ApplicationController
     # before_action :authorize
 
     def index
-        @users = User.all
+        if params[:identity_id]
+            @users = Identity.find(params[:identity_id]).users
+        else
+            @users = User.all
+        end
     end
 
     def new
@@ -18,11 +22,13 @@ class UsersController < ApplicationController
             flash[:success] = "Welcome #{@user.name}!"
             redirect_to dashboard_path
         else
+            flash[:danger] = "Sorry, Account could not be created, please try again."
             render :new
         end
     end
 
     def show
+        # @user = current_user
         @user = User.find(params[:id])
     end
 

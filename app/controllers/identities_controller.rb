@@ -4,37 +4,37 @@ class IdentitiesController < ApplicationController
         # before_action :authorize[]
 
     def index
-        # if params[:user_id]
-        #     @identities = User.find(params[:user_id]).identities
-        # else
-        #     @identities = Identity.all
-        # end
-        @identities = Identity.all
+        if params[:user_id]
+            @identities = User.find(params[:user_id]).identities
+        else
+            @identities = Identity.all
+        end
     end
 
     def new
-        @user = current_user
-        @identity = @user.identities.build
-        # @identity = Identity.new
+        # @user = current_user
+        # @identity = @user.identities.build
+        @identity = Identity.new
     end
 
     def create
-        if params[:user_id]
-            @user = User.find(id: params[:user_id])
-            @identity = @user.identities.build(identity_params)
-            if @identity.save
-                redirect_to user_identities_path(@user)
-            else 
-                render :new
-            end
-        else
+        # if params[:user_id]
+        #     @user = User.find(id: params[:user_id])
+        #     @identity = @user.identities.build(identity_params)
+        #     if @identity.save
+        #         redirect_to user_identities_path(@user)
+        #     else 
+        #         render :new
+        #     end
+        # else
             @identity = Identity.new(identity_params)
             if @identity.save 
-                redirect_to identities_path
+                redirect_to identity_path(@identity)
             else
+                flash[:danger] = "Identity was not saved, please try again."
                 render :new
             end
-        end 
+        # end 
     end
 
     # def edit
