@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
 
     before_action :authenticate
+    before_action :get_comment, only: [:edit, :update, :destroy]
      # before_action :authorize[]
 
     def index
-       current_user
+        current_user
         if params[:comment_id]
             @comment = Comment.find(params[:comment_id]).comments
         elsif params[:habit_id]
@@ -16,7 +17,7 @@ class CommentsController < ApplicationController
         else
             @comments = Comment.all
         end
-    end
+    end 
 
     def new
         # @user = current_user
@@ -46,15 +47,12 @@ class CommentsController < ApplicationController
 
     def edit
         @user = current_user
-        @comment = Comment.find(params[:id])
         authorize(@comment)
     end
 
     def update
-        @comment = Comment.find(params[:id])
         authorize(@comment)
         if @comment.update(comment_params)
-        # if @comment.save
             redirect_to polymorphic_path([@commentable, @comments])
         else
             flash[:danger] = "Comment was not updated."
@@ -63,18 +61,21 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = Comment.find(params[:id])
         authorize(@comment)
         redirect_to polymorphic_path([@commentable, @comments])
     end
 
-     def show
+    def show
+    @comment = Comment.find(params[:id])
+    end
+
+    private
+
+    def get_comment
         @comment = Comment.find(params[:id])
-     end
+    end
 
-     private
-
-     def comment_params
-         params.require(:comment).permit(:user_id, :content, :commentable_id, :commentable_type)
-     end
+    def comment_params
+        params.require(:comment).permit(:user_id, :content, :commentable_id, :commentable_type)
+    end
 end
