@@ -1,18 +1,26 @@
-<h3>Habit:</h3>
+<h2>Habit:</h2>
 <%= render 'habit', habit: @habit %>
 <% @habit.identities.each do |identity| %>
-<p>Linked to <%= link_to identity.description %> <%= render partial: "identity_habits/delete", locals: {identity: identity, habit: @habit} %></p>
+<p>Linked to <%= link_to identity.description, identity_path(identity) %> <%= render partial: "identity_habits/delete", locals: {identity: identity, habit: @habit} %></p>
 <% end %>
 <br>
 
 <div>
-<h4>Link this Habit to an Identity</h4>
+<h4>Link this Habit to an IDentity</h4>
 <%= render "identity_habits/form" %>
 </div>
+
 <p><%= link_to "Back to Habits List", habits_path %></p>
+<br>
+<br>
 
+<h3>Followers:</h3>
+<% @habit.users.each do |user| %>
+<%= render partial: "users/user", locals: {user: user} %>
+<% end %>
 
-
+<br>
+<br>
 <br>
 <h3>Comments: </h3>
 <% @habit.comments.each do |comment| %>

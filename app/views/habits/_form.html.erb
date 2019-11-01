@@ -1,4 +1,10 @@
-<h3>Habit:</h3>
+<% if habit.errors.any? %>
+    <% habit.errors.full_messages.each do |msg| %>
+       <div class="warning"> <%= msg %></div>
+    <% end %>
+<% end %>
+
+
 <%= form_with model: habit, local: true do |form| %>
       <div>
       <h5>Build or Quit a Habit ?</h5>
@@ -9,12 +15,12 @@
     </div>    
     <p>
         <%= form.label :title %>:
-        <%= form.text_field :title, placeholder: "Code, Exercise, etc..." %>
+        <%= form.text_field :title, placeholder: "Code, Exercise, Meditate..." %>
     </p>
     <p>
         <%= form.label :frequency %>:
-        <%= form.number_field( :frequency_number, in: 1..10) %> times per 
-        <%= form.select :frequency, ['Day', 'Week', 'Month']%>
+        <%= form.number_field( :frequency_number, in: 1..10) %> time(s) per 
+        <%= form.select :frequency, ['DAY', 'WEEK', 'MONTH']%>
     </p>
     <p>
         <%= form.submit %>
