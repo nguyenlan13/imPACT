@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :users do  
         resources :identities, only: [:index, :new, :create]
         resources :habits
-        # resources :steps
+        resources :steps
         resources :streaks, only: [:index]
         resources :comments
     end
