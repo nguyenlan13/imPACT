@@ -28,6 +28,19 @@ class ApplicationController < ActionController::Base
         raise Errors::AuthorizationError.new if !owner?(resource)
     end
 
+    # def authorize
+    #     if !logged_in? || current_user.nil?
+    #         redirect '/login'
+    #     end
+    #   end
+
+
+    # def auth_edit(resource)
+    #     authorize
+    #     raise Errors::AuthorizationError.new if !resource
+    #     raise Errors::AuthorizationError.new if !owner?(resource)
+    # end
+
 
     def log_in(user)
         session[:user_id] = user.id
