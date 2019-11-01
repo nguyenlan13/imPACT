@@ -12,12 +12,12 @@
   <body>
     <header>
     <%= navbar %>
-    <h1>imPACT</h1>
-   
+    <br>
+  
+   <%= image_tag "Logo.png" %>
         <% flash.each do |k, v| %>
             <div class="warning"><%= v %></div>
         <% end %>
-  
     </header>
     <%= yield %>
   </body>
