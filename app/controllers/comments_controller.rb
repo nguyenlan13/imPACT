@@ -19,6 +19,7 @@ class CommentsController < ApplicationController
     end
 
     def new
+        # @user = current_user
         @comment = Comment.new
     end
 
@@ -44,13 +45,14 @@ class CommentsController < ApplicationController
     end
 
     def edit
+        @user = current_user
         @comment = Comment.find(params[:id])
     end
 
     def update
         @comment = Comment.find(params[:id])
-        @comment.update(comment_params)
-        if @comment.save
+        if @comment.update(comment_params)
+        # if @comment.save
             redirect_to polymorphic_path([@commentable, @comments])
         else
             flash[:danger] = "Comment was not updated."
@@ -59,7 +61,8 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = Comment.find(params[:id]).delete
+        @comment = Comment.find(params[:id])
+        # if @comment.delete
         redirect_to polymorphic_path([@commentable, @comments])
     end
 

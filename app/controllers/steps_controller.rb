@@ -1,7 +1,7 @@
 class StepsController < ApplicationController
     
     before_action :authenticate
-    # before_action :get_step, only [:edit, :update]
+    before_action :get_step, only [:show, :destroy]
 
     def index
         @user = current_user
@@ -30,14 +30,6 @@ class StepsController < ApplicationController
                 flash[:danger] = "Action was not saved, please try again."
                 render :new
             end
-        # else
-        #     @step = Step.new(step_params)
-        #     if @step.save 
-        #         redirect_to step_path(@step) 
-        #     else
-        #         render :new
-        #         # redirect_to new_action_path
-        #     end
         end 
     end
 
@@ -63,11 +55,10 @@ class StepsController < ApplicationController
     end
 
     def show
-        @step = Step.find(params[:id])
+   
     end
 
     def destroy
-       @step = Step.find(params[:id])
        if @step.delete
             redirect_to(request.env['HTTP_REFERER'])
        else
