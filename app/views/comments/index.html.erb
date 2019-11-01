@@ -1,1 +1,6 @@
 <h4>Comments:</h4>
+
+<% @comments.each do |comment| %>
+<%= render partial: "comment", locals: {comment: comment, user: comment.user} %>
+<br>
+<% end %>
