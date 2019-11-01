@@ -1,7 +1,32 @@
 
 <div>
+<br>
 <h3>Join a PACT:</h3>
 <%= render 'join_pact' %>
 </div>
 
-<h5><%= link_to "Add New Identity", new_identity_path %></h5>
+<h5><%= link_to "Add New IDentity", new_identity_path %></h5>
+
+
+<h5><%= link_to "Go to My PACTs", user_identities_path(current_user) %></h5>
+
+<br>
+<br>
+<h3>Add a New Habit: </h3>
+
+<%= render partial: "habits/form", locals: {habit: Habit.new} %>
+
+<br>
+<br>
+
+<h3>Most Recent Built Habits: </h3>
+<% @user.habits.building.each do |habit| %>
+<%= render "habits/habit", habit: habit %>
+<% end %>
+
+<br>
+
+<h3>Most Recent Quit Habits: </h3>
+<% @user.habits.quit.each do |habit| %>
+<%= render "habits/habit", habit: habit %>
+<% end %>
