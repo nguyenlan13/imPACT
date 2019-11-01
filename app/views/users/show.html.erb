@@ -1,39 +1,51 @@
+<br>
 <% if @user == current_user %>
 <h3>My PACTS: </h3>
 <% else %>
 <h2><%= @user.username %>'s Profile</h2>
 <h3>Current PACTS:</h3>
 <% end %>
+
+<% if @user == current_user %>
+  <%= link_to "Add IDentity", new_identity_path%>
+  <% end %>
+<br>
 <% @user.identities.each do |identity| %>
     <%= render 'identities/identity', identity: identity %>
 <% end %>
-<% if @user == current_user %>
-  <%= link_to "Add Identity", new_identity_path%>
-  <% end %>
 
-
+<br>
 <% if @user == current_user %>
 <h3>My Habits: </h3>
 <% else %>
 <h3>Current Habits:</h3>
 <% end %>
 
+
+<% if @user == current_user %>
+  <%= link_to "Add Habit", new_habit_path%>
+<% end %>
+
 <% @user.habits.each do |habit| %>
+
 <%= render 'habits/habit', habit: habit %>
 
 <% if @user == current_user %>
     <h5>Action Steps: </h5>
     <% @user.steps.each do |step| %>
         <%= render "steps/step", step: step %>
+        <%= link_to "Edit Step", edit_habit_step_path(step.habit, step) %> <%= render "steps/delete", habit: step.habit, step: step %>
+    <br>
     <% end %> 
 <% end %> 
+
+<br>
+<% if @user == current_user %>
 <%= link_to "Add Action Step", new_habit_step_path(habit) %>
 <% end %>
-
-
-<% if @user == current_user %>
-  <%= link_to "Add Habit", new_habit_path%>
 <% end %>
+<br>
+
 
 
 

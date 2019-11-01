@@ -2,7 +2,7 @@
 
 <% @users.each do |user| %>
 
-<%= link_to user.username, user_path(user) %>
+<%= render partial: "user", locals: {user: user} %>
 
 <br>
 <% end %>

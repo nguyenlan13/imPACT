@@ -1,4 +1,4 @@
 <%= form_with model: @identity, url: join_path, local: true do |form| %>
-    <%= form.collection_select :identity_id, Identity.all, :id, :pact_name, {:prompt => 'Select Identity'} %>
+    <%= form.collection_select :identity_id, Identity.all, :id, :pact_name, {:include_blank => 'Select Identity'} %>
 <%= form.submit "Join Pact" %>
 <% end %>
