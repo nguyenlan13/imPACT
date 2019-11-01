@@ -47,10 +47,12 @@ class CommentsController < ApplicationController
     def edit
         @user = current_user
         @comment = Comment.find(params[:id])
+        authorize(@comment)
     end
 
     def update
         @comment = Comment.find(params[:id])
+        authorize(@comment)
         if @comment.update(comment_params)
         # if @comment.save
             redirect_to polymorphic_path([@commentable, @comments])
@@ -62,7 +64,7 @@ class CommentsController < ApplicationController
 
     def destroy
         @comment = Comment.find(params[:id])
-        # if @comment.delete
+        authorize(@comment)
         redirect_to polymorphic_path([@commentable, @comments])
     end
 

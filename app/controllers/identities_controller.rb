@@ -1,7 +1,6 @@
 class IdentitiesController < ApplicationController
 
     before_action :authenticate
-        # before_action :authorize[]
 
     def index
         if params[:user_id]

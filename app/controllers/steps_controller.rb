@@ -1,12 +1,14 @@
 class StepsController < ApplicationController
     
     before_action :authenticate
-    before_action :get_step, only [:show, :destroy]
+    before_action :get_step, only: [:show, :destroy]
+    # before_action :authorize_to_view(dashboard_path)
 
     def index
-        @user = current_user
+        authorize_to_view(dashboard_path)
         if params[:user_id]
             @steps = User.find(params[:user_id]).steps
+
         else params[:habit_id]
             @steps = Habit.find(params[:habit_id]).steps
         end
@@ -23,9 +25,10 @@ class StepsController < ApplicationController
             @habit = Habit.find(params[:habit_id])
             @step = @habit.steps.build(step_params)
             @step.user = current_user
+            authorize(@step)
             if @step.save
-                # redirect_to user_steps_path(current_user)
-                redirect_to habit_steps_path(@habit)
+                redirect_to user_steps_path(current_user)
+                # redirect_to habit_steps_path(@habit)
             else
                 flash[:danger] = "Action was not saved, please try again."
                 render :new
@@ -37,21 +40,21 @@ class StepsController < ApplicationController
         @user = current_user  
         @habit = Habit.find(params[:habit_id])
         @step = @habit.steps.find(params[:id])
+        authorize(@step)
     end
 
     def update
         @user = current_user 
         @habit = Habit.find(params[:habit_id])
         @step = @habit.steps.find(params[:id])
+        authorize(@step)
         if @step.update(step_params)
-        # if @step.save
-            # redirect_to user_steps_path(current_user)
-            redirect_to habit_steps_path(@habit)
+            redirect_to user_steps_path(current_user)
+            # redirect_to habit_steps_path(@habit)
         else
             flash[:danger] = "Action step was not updated, please try again."
             render :edit
         end
-        # redirect_to habit_steps_path(@habit)
     end
 
     def show
@@ -59,17 +62,18 @@ class StepsController < ApplicationController
     end
 
     def destroy
-       if @step.delete
+        authorize(@step)
+        if @step.delete
             redirect_to(request.env['HTTP_REFERER'])
-       else
+        else
             flash[:danger] = "Action step could not be deleted"
             redirect_to(request.env['HTTP_REFERER'])
-       end
+        end
     end
 
     private
 
-    def get_steps
+    def get_step
         @step = Step.find(params[:id])
     end
 

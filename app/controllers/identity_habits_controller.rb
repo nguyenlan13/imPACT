@@ -1,4 +1,6 @@
 class IdentityHabitsController < ApplicationController
+    
+    before_action :authenticate
 
     def create
         identity_habit = IdentityHabit.new(identity: Identity.find(params[:identity_habit][:identity_id]), habit: Habit.find(params[:habit_id]))

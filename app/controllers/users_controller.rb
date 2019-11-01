@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    # before_action :authorize
-
+    before_action :authenticate, only: [:index, :show, :dashboard]
+  
     def index
         if params[:identity_id]
             @users = Identity.find(params[:identity_id]).users
@@ -16,8 +16,6 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-        #logs in the user
-        # session[:user_id] = @user.id
             log_in(@user)
             flash[:success] = "Welcome #{@user.name}!"
             redirect_to dashboard_path
@@ -28,15 +26,12 @@ class UsersController < ApplicationController
     end
 
     def show
-        # @user = current_user
         @user = User.find(params[:id])
     end
 
     def dashboard
         @user = current_user
-        # @identity = Identity.find(params[:identity_id])
     end
-
 
     private
 

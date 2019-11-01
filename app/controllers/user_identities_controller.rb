@@ -1,7 +1,10 @@
 class UserIdentitiesController < ApplicationController
+    
+    before_action :authenticate
 
     def create
         user_identity = UserIdentity.new(user: current_user, identity: Identity.find(params[:identity_id]))
+        authorize(user_identity)
         if user_identity.save
             redirect_to identity_path(params[:identity_id])
         else
@@ -12,6 +15,7 @@ class UserIdentitiesController < ApplicationController
 
     def destroy
         user_identity = UserIdentity.find_by(user: params[:user_id], identity: params[:identity_id])
+        authorize(user_identity)
         if user_identity.delete
             redirect_to(request.env['HTTP_REFERER'])
         else
