@@ -5,6 +5,8 @@ class Identity < ApplicationRecord
     has_many :habits, through: :identity_habits
     has_many :comments, as: :commentable, dependent: :destroy
 
+    validates :pact_name, uniqueness: true, presence: true
+    validates :description, uniqueness: true, presence: true
 #scope method
 #   accepts_nested_attributes_for :habits
 

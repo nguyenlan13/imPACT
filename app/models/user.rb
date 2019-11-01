@@ -35,7 +35,11 @@ class User < ApplicationRecord
         end
     end
 
+    # def self.user_with_most_habits(habit)
+    #     where(habits: )
+    # end
     
+
     #   has_many :comments, as: :commentable
 
     #   accepts_nested_attributes_for :identities
