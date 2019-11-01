@@ -1,9 +1,12 @@
 <h3>IDentities</h3>
-<%= link_to "Add Identity", new_identity_path %>
+<%= link_to "Add IDentity", new_identity_path %>
 <div>
     <% @identities.each do |identity| %>
  <%= render "identity", identity: identity %>
+
+ <% if !identity.users.include?(current_user) %>
  <%= render partial: "user_identities/form", locals: {identity: identity} %>
+ <% end %>
 <% end %>
 </div>
 

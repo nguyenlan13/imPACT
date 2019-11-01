@@ -1,12 +1,18 @@
-<h3>IDentity:</h3>
+
+
+<% if @identity.errors.any? %>
+    <% @identity.errors.full_messages.each do |msg| %>
+       <div class="warning"> <%= msg %></div>
+    <% end %>
+<% end %>
 
 <%= form_with model: identity, local: true do |form| %>
     <p>
 
-        PACT Name:<%= form.text_field :pact_name %>
+        PACT Name: <%= form.text_field :pact_name %>
     </p>
     <p>
-        I am a/an <%= form.text_field :description, placeholder: "Reader, Healthy Person..." %>
+        I am a(n) <%= form.text_field :description, placeholder: "Reader, Healthy Person..." %>
     </p>
         <%= form.submit %>
 <% end %>

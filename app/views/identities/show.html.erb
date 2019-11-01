@@ -1,22 +1,25 @@
 
 <h3>IDentity: I'm A <%= @identity.description %> </h3>
 
+<% if !@identity.users.include?(current_user) %>
+<%= render partial: 'user_identities/form', locals: {identity: @identity} %>
+<% else %>
 <%= render partial: "user_identities/leave", locals: {user: @user, identity: @identity} %>
+<% end %>
 <br>
-<%= link_to "Back to Identities List", identities_path %>
 
-        <h3><%= @identity.pact_name %> Members: </h3>
+<%= link_to "Back to Identities List", identities_path %>
+<br>
+<br>
+        <h3><%= @identity.pact_name %></h3>
+         <h5>Members: </h5> 
 <% @identity.users.each do |user| %>
     <p>
-        <div>
-            <%= link_to user.name, user_path(user) %> 
-        </div>
+        <%= link_to user.name, user_path(user) %> 
     </p>
 <% end %>
 <br>
-<%= render partial: 'user_identities/form', locals: {identity: @identity} %>
 
-<br>
 <h3>Comments: </h3>
 
 <% @identity.comments.each do |comment| %>
