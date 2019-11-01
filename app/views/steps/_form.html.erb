@@ -1,19 +1,24 @@
 
+<% if step.errors.any? %>
+    <% step.errors.full_messages.each do |msg| %>
+       <div class="warning"> <%= msg %></div>
+    <% end %>
+<% end %>
 
 <%= form_with model: ([habit, step]), local: true do |form| %>
  <%= hidden_field_tag "habit_id", habit.id %>
     <p>
-       I will: <%= form.text_field :action_step, placeholder: "Action" %>
+       I will: <%= form.text_field :action_step, placeholder: "Sleep, Meditate, Draw.." %> (Action)
     </p>
     <p>
         <%= form.label :before %>
         <%= form.radio_button :before, true %>
         <%= form.label :after %>
         <%= form.radio_button :before, false %>
-        <%= form.text_field :start_datetime, placeholder: "Work, Schoool, etc.." %>
+        <%= form.text_field :start_datetime, placeholder: "Work, School, Lunch..." %> (Activity)
     </p>
     <p>
-        At: <%= form.text_field :location, placeholder: "Location" %>
+        At: <%= form.text_field :location, placeholder: "Office, a Park, Kitchen.." %> (Location)
     </p>
     <p>
         At: <%= form.time_select :action_time, {ampm: true} %>
@@ -44,7 +49,7 @@
     </p>
 
     <p>
-        For: <%= form.number_field(:duration_number, in: 1..60) %>
+        For: <%= form.number_field(:duration_number, in: 1..60) %> (Duration)
     </p>
 
     <p>
@@ -56,3 +61,4 @@
         <%= form.submit step.id.nil? ? 'Create Action' : "Edit Action" %>
     </p>
 <% end %>
+
